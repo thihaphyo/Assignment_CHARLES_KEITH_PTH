@@ -7,4 +7,9 @@
 
     <color name="black_overlay">#66000000</color>
     <color name="ripple_white">#D9FFFFFF</color>
+
+    <!--Dummy colors-->
+    <color name="dummyColorRed">#D32F2F</color>
+    <color name="dummyColorBlue">#303F9F</color>
+    <color name="dummyColorYellow">#FFC107</color>
 </resources>

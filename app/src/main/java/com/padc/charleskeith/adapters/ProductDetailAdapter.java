@@ -7,33 +7,49 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.padc.charleskeith.R;
+import com.padc.charleskeith.data.vos.NewProductVO;
+import com.padc.charleskeith.delegates.NewProductDetailDelegate;
 import com.padc.charleskeith.viewholders.ProductDetailViewHolder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Phyo Thiha on 6/29/18.
  */
-public class ProductDetailAdapter extends RecyclerView.Adapter {
+public class ProductDetailAdapter extends RecyclerView.Adapter<ProductDetailViewHolder> {
 
-    public ProductDetailAdapter(){
+    private NewProductDetailDelegate mDelegate;
 
+    private List<NewProductVO> newProductList;
+
+    public ProductDetailAdapter(NewProductDetailDelegate delegate) {
+        mDelegate = delegate;
+        newProductList = new ArrayList<>();
     }
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ProductDetailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.view_holder_product,parent,false);
-        return new ProductDetailViewHolder(view);
+        View view = layoutInflater.inflate(R.layout.view_holder_product, parent, false);
+        return new ProductDetailViewHolder(view, mDelegate);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull ProductDetailViewHolder holder, int position) {
+        holder.setData(newProductList.get(position));
     }
+
 
     @Override
     public int getItemCount() {
-        return 10;
+        return newProductList.size();
+    }
+
+    public void setNewProductList(List<NewProductVO> newProductList) {
+        this.newProductList = newProductList;
+        notifyDataSetChanged();
     }
 }
