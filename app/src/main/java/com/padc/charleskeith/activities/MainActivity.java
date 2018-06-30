@@ -59,6 +59,8 @@ public class MainActivity extends BaseActivity
     NavigationView navigationView;
     @BindView(R.id.vp_empty)
     EmptyViewPod vpEmpty;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     private NewProductsAdapter adapter;
     private final String TAG = MainActivity.class.getSimpleName();
@@ -68,7 +70,6 @@ public class MainActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this, this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         tvItemCount.setText("20 Items");
 

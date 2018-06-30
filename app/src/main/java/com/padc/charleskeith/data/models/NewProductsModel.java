@@ -50,25 +50,27 @@ public class NewProductsModel {
 
     public void loadNewProducts() {
         mDataAgent.loadNewProducts(mPage, ACCESS_TOKEN, false);
-        mPage++;
+
     }
 
     public void forceRefreshNewProducts() {
         mPage = 1;
         mDataAgent.loadNewProducts(1, ACCESS_TOKEN, true);
-        mPage++;
+
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void onSuccessGetNewProduct(GetNewProductSuccessEvent event) {
 
         setDataRepository(event.getmNewProducts());
+        mPage++;
 
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void onSuccessForce(GetNewProductForceSuccessEvent event) {
         setDataRepository(event.getmNewProducts());
+        mPage++;
 
     }
 
